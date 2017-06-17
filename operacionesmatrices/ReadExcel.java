@@ -21,6 +21,7 @@ import jxl.read.biff.BiffException;
 public class ReadExcel {
 
     private String inputFile;
+    private Sheet sheet;
 
     public void setInputFile(String inputFile) {
         this.inputFile = inputFile;
@@ -32,9 +33,10 @@ public class ReadExcel {
         try {
             w = Workbook.getWorkbook(inputWorkbook);
             // Get the first sheet
-            Sheet sheet = w.getSheet(0);
+            sheet = w.getSheet(0);
             // Loop over first 10 column and lines
 
+            /*
             for (int j = 0; j < sheet.getColumns(); j++) {
                 for (int i = 0; i < sheet.getRows(); i++) {
                     Cell cell = sheet.getCell(j, i);
@@ -51,15 +53,25 @@ public class ReadExcel {
 
                 }
             }
+            */
         } catch (BiffException e) {
             e.printStackTrace();
         }
     }
-
+    
+    int getNumberInCell(int r,int c) {
+        
+        Cell cell = sheet.getCell(r, c);
+        int content = Integer.parseInt(cell.getContents());
+        return content;
+    }
+    
+    /*
     public static void main(String[] args) throws IOException {
         ReadExcel test = new ReadExcel();
         test.setInputFile("c:/temp/lars.xls");
         test.read();
     }
+    */
 }
 
