@@ -41,6 +41,8 @@ public class Operations {
             
             file1.read(_file1 + ".xls");
             int nrowsFile1 = file1.getNumRows();
+
+            
             int ncolsFile1 = file1.getNumCols();
             
             System.out.println("Numero de filas: " + nrowsFile1 + "\nNumero de columnas"

@@ -76,13 +76,17 @@ public class ReadExcel {
         int rowi = 0;
         
         while (true) {
-            Cell cell = sheet.getCell(rowi, 0);
-            CellType type = cell.getType();
-            if (type == CellType.EMPTY) {
+            try{
+                Cell cell = sheet.getCell(rowi, 0);
+                CellType type = cell.getType();
+            
+            }catch (Exception e) {
                 break;
+                    }
+            finally {
+                cont++;
+                rowi++;
             }
-            cont++;
-            rowi++;
         
         }
         
