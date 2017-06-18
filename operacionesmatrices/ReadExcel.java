@@ -41,7 +41,7 @@ public class ReadExcel {
         }
     }
 
-    int getNumberInCell(int c,int r) {
+    int getNumberInCell(int r,int c) {
 
         Cell cell = sheet.getCell(c, r);
         int content = Integer.parseInt(cell.getContents());
@@ -104,7 +104,7 @@ public class ReadExcel {
             for (int j = 0; j < getNumCols(); j++) {
                 Cell cell = sheet.getCell(j, i);
                 CellType type = cell.getType();
-                if (getNumberInCell(j, i) != 0) {
+                if (getNumberInCell(i, j) != 0) {
                     flag = false;
                 }
             }
@@ -120,11 +120,11 @@ public class ReadExcel {
                 Cell cell = sheet.getCell(j, i);
                 CellType type = cell.getType();
                 if(i == j){
-                    if (getNumberInCell(j, i)== 0) {
+                    if (getNumberInCell(i, j)== 0) {
                         flag = false;
                     }
                 }else{
-                    if (getNumberInCell(j, i)!= 0) {
+                    if (getNumberInCell(i, j)!= 0) {
                         flag = false;
                     }
                 }
@@ -140,11 +140,11 @@ public class ReadExcel {
                 Cell cell = sheet.getCell(j, i);
                 CellType type = cell.getType();
                 if(i <= j){
-                    if (type == CellType.EMPTY || getNumberInCell(j, i)== 0) {
+                    if (getNumberInCell(i, j)== 0) {
                         flag = false;
                     }
                 }else{
-                    int c = getNumberInCell(j, i);
+                    int c = getNumberInCell(i, j);
                     if (c!= 0) {
                         flag = false;
                     }
@@ -161,11 +161,11 @@ public class ReadExcel {
                 Cell cell = sheet.getCell(j, i);
                 CellType type = cell.getType();
                 if(i >= j){
-                    if (type == CellType.EMPTY || getNumberInCell(j, i)== 0) {
+                    if (getNumberInCell(i, j)== 0) {
                         flag = false;
                     }
                 }else{
-                    if (type != CellType.EMPTY || getNumberInCell(j, i)!= 0) {
+                    if (getNumberInCell(i, j)!= 0) {
                         flag = false;
                     }
                 }
@@ -193,16 +193,16 @@ public class ReadExcel {
                 CellType type = cell.getType();
                 if(i == j){
                     if(firstTime){
-                        num = getNumberInCell(j, i);
+                        num = getNumberInCell(i, j);
                         firstTime = false;
                     }else{
-                        if (getNumberInCell(j, i) != num) {
+                        if (getNumberInCell(i, j) != num) {
                             flag = false;
                         }
                     }
 
                 }else{
-                    if (getNumberInCell(j, i) != 0) {
+                    if (getNumberInCell(i, j) != 0) {
                         flag = false;
                     }
                 }
@@ -219,11 +219,11 @@ public class ReadExcel {
                 Cell cell = sheet.getCell(j, i);
                 CellType type = cell.getType();
                 if(i == j){
-                    if (getNumberInCell(j, i) != num) {
+                    if (getNumberInCell(i, j) != num) {
                         flag = false;
                     }
                 }else{
-                    if (getNumberInCell(j, i)!= 0) {
+                    if (getNumberInCell(i, j)!= 0) {
                         flag = false;
                     }
                 }
@@ -236,7 +236,7 @@ public class ReadExcel {
         boolean flag = true;
         for (int i = 0; i < getNumRows(); i++) {
             for (int j = 0; j < getNumCols(); j++) {
-                Cell cell = sheet.getCell(i, j);
+                Cell cell = sheet.getCell(j, i);
                 CellType type = cell.getType();
                 if (getNumberInCell(i, j)!= 1) {
                     flag = false;
