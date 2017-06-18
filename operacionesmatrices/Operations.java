@@ -11,12 +11,17 @@ package operacionesmatrices;
 //import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 
 import java.util.Random;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -89,11 +94,34 @@ public class Operations {
             int newMatrixCols = ncolsFile2;
             
             
-            //int numberOfThreads = newMatrixRows*newMatrixCols;
-            //List<Thread> threads = new ArrayList<>(numberOfThreads);
+             
+            // ... create an empty output excel file here...
+            /*FileOutputStream fos = new FileOutputStream(_newFileName);
+            XSSFWorkbook workbook = new XSSFWorkbook();
+            XSSFSheet sheet = workbook.createSheet();
+            
+            XSSFRow rowRef = null;
+            for (int i = 0; i < newMatrixRows; i++) {
+                rowRef = sheet.createRow(i);
+                if (rowRef != null) {
+                    for (int j = 0; j < newMatrixCols; j++) {
+                        XSSFCell cellRef = rowRef.createCell(j);
+                        cellRef.setCellValue("X");
+                    }
+                }
+            }
+            
+            System.out.println("LLEGO");
+            workbook.write(fos);*/
+            
+            
+            ModifyExcel me = new ModifyExcel(_newFileName, newMatrixRows, newMatrixCols);
+            
+
+            
             for (int i = 0; i < newMatrixRows;i++) {
                 for (int j = 0; j < newMatrixCols;j++) {
-                    (new ThreadMultiply(file1,file2,i,j,_newFileName)).start();
+                    (new ThreadMultiply(file1,file2,i,j,me)).start();
                 }
             }
             
@@ -146,7 +174,36 @@ public class Operations {
         } finally {
             return msg;
         }
-    }    
+    }
+
+
+    public void multiplyE(String _file1,String _newFileName,int _number)  {
+        ReadExcel file1 = new ReadExcel();   
+        try {
+            WriteExcel newM = new WriteExcel();
+            newM.setOutputFile(_newFileName);
+            newM.writeFile();
+            
+            
+            file1.read(_file1 + ".xls");
+            int nrowsFile1 = file1.getNumRows();
+            int ncolsFile1 = file1.getNumCols();
+            
+            System.out.println("Numero de filas: " + nrowsFile1 + "\nNumero de columnas"
+            + ncolsFile1);
+            
+            for (int i = 0; i < nrowsFile1; i++) {
+                for (int j = 0; j < ncolsFile1; j++) {
+                    newM.writeInCell(j, i, file1.getNumberInCell(i, j) * _number);
+                }
+            
+            }
+            newM.closeFile();
+            
+        } catch (Exception e) {
+            
+        
+        }    
     
     
 }

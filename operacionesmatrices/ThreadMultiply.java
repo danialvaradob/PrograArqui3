@@ -5,10 +5,13 @@
  */
 package operacionesmatrices;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import jxl.write.WriteException;
+import jxl.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 
 /**
@@ -20,46 +23,36 @@ public class ThreadMultiply extends Thread {
     private ReadExcel matrixB;
     private int positionI;
     private int positionJ;
-    private WriteExcel newMatrix;
-    
+    private ModifyExcel me;
     
     public ThreadMultiply(ReadExcel _matrixA, ReadExcel _matrixB, int _positionI, 
-            int _positionJ, String _newMatrixName) throws IOException {
+            int _positionJ, ModifyExcel _me) throws IOException {
         
         matrixA = _matrixA;
         matrixB = _matrixB;
         positionI = _positionI;
         positionJ = _positionJ;
-        newMatrix = new WriteExcel();
-        newMatrix.setOutputFile(_newMatrixName);
-        try {
-            newMatrix.writeFile();
-        } catch (WriteException ex) {
-            Logger.getLogger(ThreadMultiply.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        me = _me;
     }
     
     @Override
     public void run() {
-        if (matrixA != null && matrixB != null && newMatrix != null) {
+        if (matrixA != null && matrixB != null && me != null) {
             int result = 0;
             for (int index = 0; index < matrixA.getNumCols(); index++) {
                 result += matrixA.getNumberInCell(positionI, index) * matrixB.getNumberInCell(index, positionJ);
-                System.out.printf("Hilo [%d,%d], values[%d, %d]", positionI, positionJ,matrixA.getNumberInCell(positionI, index), matrixB.getNumberInCell(index, positionJ));
+                //System.out.printf("Hilo [%d,%d], values[%d, %d]", positionI, positionJ,matrixA.getNumberInCell(positionI, index), matrixB.getNumberInCell(index, positionJ));
             }
+            
             System.out.println("Hilo " + positionI + ", " +positionJ + " Resultado: "
             + result);
-            /*
-            newMatrix.writeInCell(positionI, positionJ, result);
+  
             try {
-                newMatrix.closeFile();
-            } catch (IOException ex) {
-                Logger.getLogger(ThreadMultiply.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (WriteException ex) {
+                me.write(positionI, positionJ, String.valueOf(result));
+            } catch (Exception ex) {
                 Logger.getLogger(ThreadMultiply.class.getName()).log(Level.SEVERE, null, ex);
             }
-            */
+            
         }
     }
     

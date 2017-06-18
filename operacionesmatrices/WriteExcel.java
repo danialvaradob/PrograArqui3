@@ -10,11 +10,15 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import jxl.CellView;
+import jxl.Sheet;
 import jxl.Workbook;
 import jxl.WorkbookSettings;
 import jxl.format.UnderlineStyle;
+import jxl.read.biff.BiffException;
 import jxl.write.Formula;
 import jxl.write.Label;
 import jxl.write.Number;
@@ -42,6 +46,8 @@ public class WriteExcel {
     //CREATED BY DANIEL
     private WritableSheet excelSheet;
     private WritableWorkbook workbook;
+    
+    
     
     
     public void setOutputFile(String name) {
@@ -93,11 +99,20 @@ public class WriteExcel {
         if(!file.exists()) {
             this.workbook = Workbook.createWorkbook(file, wbSettings);
             this.workbook.createSheet(inputFile, 0);
+            
+            
             this.excelSheet = this.workbook.getSheet(0);
             //createLabel(excelSheet);
             createContentNeeded();
         } else {
-            asdasdasdas
+            try {
+                Workbook workbook1 = Workbook.getWorkbook(file);
+                workbook = Workbook.createWorkbook(file, workbook1);
+                excelSheet = workbook.getSheet(0);
+                
+            } catch (BiffException ex) {
+                Logger.getLogger(WriteExcel.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
         }
 
@@ -294,6 +309,11 @@ public class WriteExcel {
         number = new Number(column, row, integer, times);
         sheet.addCell(number);
     }
+    
+    
+    
+    
+    
 
     private void addLabel(WritableSheet sheet, int column, int row, String s)
             throws WriteException, RowsExceededException {

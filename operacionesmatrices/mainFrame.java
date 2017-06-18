@@ -428,7 +428,11 @@ public class mainFrame extends javax.swing.JFrame {
             String msg = this.operations.multiplyM(fileName1, fileName2, newFileName);
             JOptionPane.showMessageDialog(null,msg);
         
-        }
+        }else if (inComboBox == "Producto por un escalar") {
+            String msg = this.operations.multiplyM(fileName1, fileName2, newFileName);
+            JOptionPane.showMessageDialog(null,msg);
+        
+        
         
         
         // TODO add your handling code here:

@@ -78,6 +78,7 @@ public class ReadExcel {
         int cont = 0;
         int coli = 0;
         
+        //int prueba = sheet.getColumns();
         while (true) {
             try {
                 Cell cell = sheet.getCell(coli,0);
