@@ -40,66 +40,56 @@ public class ReadExcel {
             e.printStackTrace();
         }
     }
-    
-    int getNumberInCell(int r,int c) {
-        
+
+    int getNumberInCell(int c,int r) {
+
         Cell cell = sheet.getCell(c, r);
         int content = Integer.parseInt(cell.getContents());
         return content;
     }
-    
-    
+
+
     public int getNumRows() {
-        
+
         int cont = 0;
         int rowi = 0;
-        
+
         while (true) {
             try{
                 Cell cell = sheet.getCell(0, rowi);
                 CellType type = cell.getType();
-            
-            }catch (Exception e) {
-                e.printStackTrace();
-                break;
-                    }
-            
                 cont++;
                 rowi++;
-            
-        
+
+            }catch (Exception e) {
+                break;
+            }
+
         }
-        
+
         this.numberOfRows = cont;
         return cont;
     }
-    
+
     public int getNumCols() {
         int cont = 0;
         int coli = 0;
-        
-        //int prueba = sheet.getColumns();
+
         while (true) {
             try {
-                Cell cell = sheet.getCell(coli,0);
+                Cell cell = sheet.getCell(coli, 0);
                 CellType type = cell.getType();
-                    }
-            catch (Exception e) {
-                break;
-            }
-            
                 cont++;
                 coli++;
-            
-            
-            
-        
+            } catch (Exception e) {
+                break;
+            }
+
         }
+        this.numberOfCols = coli;
         return cont;
     }
-    
-    
-    
+
 
     public boolean esCuadrada(){
         int coli = getNumCols();
@@ -112,9 +102,9 @@ public class ReadExcel {
         boolean flag = true;
         for (int i = 0; i < getNumRows(); i++) {
             for (int j = 0; j < getNumCols(); j++) {
-                Cell cell = sheet.getCell(i, j);
+                Cell cell = sheet.getCell(j, i);
                 CellType type = cell.getType();
-                if (type != CellType.EMPTY || getNumberInCell(i, j)!= 0) {
+                if (getNumberInCell(j, i) != 0) {
                     flag = false;
                 }
             }
@@ -127,14 +117,14 @@ public class ReadExcel {
         boolean flag = true;
         for (int i = 0; i < getNumRows(); i++) {
             for (int j = 0; j < getNumCols(); j++) {
-                Cell cell = sheet.getCell(i, j);
+                Cell cell = sheet.getCell(j, i);
                 CellType type = cell.getType();
                 if(i == j){
-                    if (type == CellType.EMPTY || getNumberInCell(i, j)== 0) {
+                    if (getNumberInCell(j, i)== 0) {
                         flag = false;
                     }
                 }else{
-                    if (type != CellType.EMPTY || getNumberInCell(i, j)!= 0) {
+                    if (getNumberInCell(j, i)!= 0) {
                         flag = false;
                     }
                 }
@@ -147,14 +137,15 @@ public class ReadExcel {
         boolean flag = true;
         for (int i = 0; i < getNumRows(); i++) {
             for (int j = 0; j < getNumCols(); j++) {
-                Cell cell = sheet.getCell(i, j);
+                Cell cell = sheet.getCell(j, i);
                 CellType type = cell.getType();
                 if(i <= j){
-                    if (type == CellType.EMPTY || getNumberInCell(i, j)== 0) {
+                    if (type == CellType.EMPTY || getNumberInCell(j, i)== 0) {
                         flag = false;
                     }
                 }else{
-                    if (type != CellType.EMPTY || getNumberInCell(i, j)!= 0) {
+                    int c = getNumberInCell(j, i);
+                    if (c!= 0) {
                         flag = false;
                     }
                 }
@@ -167,14 +158,14 @@ public class ReadExcel {
         boolean flag = true;
         for (int i = 0; i < getNumRows(); i++) {
             for (int j = 0; j < getNumCols(); j++) {
-                Cell cell = sheet.getCell(i, j);
+                Cell cell = sheet.getCell(j, i);
                 CellType type = cell.getType();
                 if(i >= j){
-                    if (type == CellType.EMPTY || getNumberInCell(i, j)== 0) {
+                    if (type == CellType.EMPTY || getNumberInCell(j, i)== 0) {
                         flag = false;
                     }
                 }else{
-                    if (type != CellType.EMPTY || getNumberInCell(i, j)!= 0) {
+                    if (type != CellType.EMPTY || getNumberInCell(j, i)!= 0) {
                         flag = false;
                     }
                 }
@@ -198,18 +189,20 @@ public class ReadExcel {
         boolean flag = true;
         for (int i = 0; i < getNumRows(); i++) {
             for (int j = 0; j < getNumCols(); j++) {
-                Cell cell = sheet.getCell(i, j);
+                Cell cell = sheet.getCell(j, i);
                 CellType type = cell.getType();
                 if(i == j){
                     if(firstTime){
-                        num = getNumberInCell(i,j);
+                        num = getNumberInCell(j, i);
                         firstTime = false;
+                    }else{
+                        if (getNumberInCell(j, i) != num) {
+                            flag = false;
+                        }
                     }
-                    if ((type == CellType.EMPTY || getNumberInCell(i, j)== 0) || getNumberInCell(i,j) != num) {
-                        flag = false;
-                    }
+
                 }else{
-                    if (type != CellType.EMPTY || getNumberInCell(i, j)!= 0) {
+                    if (getNumberInCell(j, i) != 0) {
                         flag = false;
                     }
                 }
@@ -223,14 +216,14 @@ public class ReadExcel {
         boolean flag = true;
         for (int i = 0; i < getNumRows(); i++) {
             for (int j = 0; j < getNumCols(); j++) {
-                Cell cell = sheet.getCell(i, j);
+                Cell cell = sheet.getCell(j, i);
                 CellType type = cell.getType();
                 if(i == j){
-                    if ((type == CellType.EMPTY || getNumberInCell(i, j)== 0) || getNumberInCell(i,j) != num) {
+                    if (getNumberInCell(j, i) != num) {
                         flag = false;
                     }
                 }else{
-                    if (type != CellType.EMPTY || getNumberInCell(i, j)!= 0) {
+                    if (getNumberInCell(j, i)!= 0) {
                         flag = false;
                     }
                 }
@@ -239,6 +232,19 @@ public class ReadExcel {
         return flag;
     }
 
+    public boolean esUnidad(){
+        boolean flag = true;
+        for (int i = 0; i < getNumRows(); i++) {
+            for (int j = 0; j < getNumCols(); j++) {
+                Cell cell = sheet.getCell(i, j);
+                CellType type = cell.getType();
+                if (getNumberInCell(i, j)!= 1) {
+                    flag = false;
+                }
+            }
+        }
+        return flag;
+    }
     
     /*
     public static void main(String[] args) throws IOException {

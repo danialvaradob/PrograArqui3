@@ -143,28 +143,32 @@ public class Operations {
 
     String getType(String _file1) {
         ReadExcel file1 = new ReadExcel();
-        String msg = "La matriz no pudo ser identificada";
+        String msg = "La matriz es: ";
         try {
                 file1.read(_file1 + ".xls");
 
                 if (file1.esCuadrada()) {
-                    msg = "La matriz es CUADRADA";
-                } else if (file1.esEscalar()) {
-                    msg = "La matriz es ESCALAR";
+                    msg += "CUADRADA";
+                } else {
+                    msg += "RECTANGULAR";
+                }if (file1.esEscalar()) {
+                    msg += " - ESCALAR";
                 } else if (file1.esIdentidad()) {
-                    msg = "La matriz es IDENTIDAD";
-                }if (file1.esMatrizColumna()) {
-                    msg = "La matriz es MATRIZ COLUMNA";
+                    msg += " - IDENTIDAD";
+                }if(file1.esUnidad()){
+                    msg += " - UNIDAD";
+                } if (file1.esMatrizColumna()) {
+                    msg += " - MATRIZ COLUMNA";
                 } if (file1.esMatrizFila()) {
-                    msg = "La matriz es MATRIZ FILA";
+                    msg += " - MATRIZ FILA";
                 } if (file1.esNula()) {
-                    msg = "La matriz es NULA";
+                    msg += " - NULA";
                 } if (file1.esSoloDiagonal()) {
-                    msg = "La matriz es DIAGONAL";
+                    msg += " - DIAGONAL";
                 } if (file1.esTriangularInferior()) {
-                    msg = "La matriz es TRIANGULAR INFERIOR";
+                    msg += " - TRIANGULAR INFERIOR";
                 } if (file1.esTriangularSuperior()) {
-                    msg = "La matriz es TRINGULAR SUPERIOR";
+                    msg += " - TRINGULAR SUPERIOR";
                 }
 
 
@@ -177,33 +181,32 @@ public class Operations {
     }
 
 
-    public void multiplyE(String _file1,String _newFileName,int _number)  {
-        ReadExcel file1 = new ReadExcel();   
+    public void multiplyE(String _file1,String _newFileName,int _number) {
+        ReadExcel file1 = new ReadExcel();
         try {
             WriteExcel newM = new WriteExcel();
             newM.setOutputFile(_newFileName);
             newM.writeFile();
-            
-            
+
+
             file1.read(_file1 + ".xls");
             int nrowsFile1 = file1.getNumRows();
             int ncolsFile1 = file1.getNumCols();
-            
+
             System.out.println("Numero de filas: " + nrowsFile1 + "\nNumero de columnas"
-            + ncolsFile1);
-            
+                    + ncolsFile1);
+
             for (int i = 0; i < nrowsFile1; i++) {
                 for (int j = 0; j < ncolsFile1; j++) {
                     newM.writeInCell(j, i, file1.getNumberInCell(i, j) * _number);
                 }
-            
+
             }
             newM.closeFile();
-            
+
         } catch (Exception e) {
-            
-        
-        }    
-    
-    
+            System.out.println("");
+        }
+    }
+
 }

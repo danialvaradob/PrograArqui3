@@ -436,11 +436,14 @@ public class mainFrame extends javax.swing.JFrame {
         
         
         // TODO add your handling code here:
+        }
     }//GEN-LAST:event_acceptBtnMouseClicked
 
     private void newFileNameTextEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newFileNameTextEditActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_newFileNameTextEditActionPerformed
+
+    static native void sumarValores(int a, int b);
 
     /**
      * @param args the command line arguments
