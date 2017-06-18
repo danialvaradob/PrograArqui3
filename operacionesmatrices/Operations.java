@@ -151,20 +151,20 @@ public class Operations {
                     msg += "CUADRADA";
                 } else {
                     msg += "RECTANGULAR";
+                }if (file1.esMatrizColumna()) {
+                    msg += " - MATRIZ COLUMNA";
+                } if (file1.esMatrizFila()) {
+                  msg += " - MATRIZ FILA";
                 }if (file1.esNula()) {
                     msg += " - NULA";
                     return msg;
                 } if (file1.esEscalar()) {
                     msg += " - ESCALAR";
-                } else if (file1.esIdentidad()) {
+                } if (file1.esIdentidad()) {
                     msg += " - IDENTIDAD";
-                }if(file1.esUnidad()){
+                } if(file1.esUnidad()){
                     msg += " - UNIDAD";
-                } if (file1.esMatrizColumna()) {
-                    msg += " - MATRIZ COLUMNA";
-                } if (file1.esMatrizFila()) {
-                    msg += " - MATRIZ FILA";
-                } if (file1.esSoloDiagonal()) {
+                }  if (file1.esSoloDiagonal()) {
                     msg += " - DIAGONAL";
                 } if (file1.esTriangularInferior()) {
                     msg += " - TRIANGULAR INFERIOR";
