@@ -61,7 +61,7 @@ public class mainFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         newFileNameTextEdit = new javax.swing.JTextField();
 
-        crearArchivoDialog.setMinimumSize(new java.awt.Dimension(1000, 1000));
+        crearArchivoDialog.setMinimumSize(new java.awt.Dimension(500, 300));
 
         jLabel5.setText("Nombre del Archivo");
 
@@ -165,7 +165,7 @@ public class mainFrame extends javax.swing.JFrame {
             }
         });
 
-        optionsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Suma", "Producto por un escalar", "Producto", "Transpuesta","Identificar Tipo","Matriz Unidad" }));
+        optionsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Suma", "Producto por un escalar", "Producto", "Transpuesta","Identificar Tipo","Inversa" }));
         optionsComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 optionsComboBoxActionPerformed(evt);
@@ -176,6 +176,7 @@ public class mainFrame extends javax.swing.JFrame {
 
         jButton1.setText("Abrir Archivo");
 
+        nameEdit1.setMinimumSize(new java.awt.Dimension(100, 50));
         nameEdit1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nameEdit1ActionPerformed(evt);
@@ -236,7 +237,7 @@ public class mainFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(nameEdit2, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-                            .addComponent(nameEdit1)
+                            .addComponent(nameEdit1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(escalarEdit))))
                 .addGap(27, 27, 27))
             .addGroup(layout.createSequentialGroup()
@@ -298,6 +299,93 @@ public class mainFrame extends javax.swing.JFrame {
 
     private void optionsComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionsComboBoxActionPerformed
         // TODO add your handling code here:
+        
+        String inComboBox = optionsComboBox.getSelectedItem().toString();
+        String newFileName = newFileNameTextEdit.getText();
+        String fileName1 = nameEdit1.getText();
+        String fileName2 = nameEdit2.getText();
+        String numberE = escalarEdit.getText();
+        
+        if (inComboBox == "Transpuesta") {
+            newFileNameTextEdit.setVisible(true);
+            nameEdit1.setVisible(true);
+            nameEdit2.setVisible(false);
+            escalarEdit.setVisible(false);
+            jTextArea1.setVisible(false);
+            
+            
+            name2Label.setVisible(false);
+            escalarLabel.setVisible(false);
+            jLabel2.setVisible(true);
+            
+
+            
+        } else if (inComboBox == "Identificar Tipo") {
+            
+            newFileNameTextEdit.setVisible(false);
+            nameEdit1.setVisible(true);
+            nameEdit2.setVisible(false);
+            escalarEdit.setVisible(false);
+            jTextArea1.setVisible(true);
+            
+            
+            name2Label.setVisible(false);
+            escalarLabel.setVisible(false);
+            jLabel2.setVisible(false);
+            
+            
+            
+            
+        } else if (inComboBox == "Producto") {
+            
+            newFileNameTextEdit.setVisible(true);
+            nameEdit1.setVisible(true);
+            nameEdit2.setVisible(true);
+            escalarEdit.setVisible(false);
+            jTextArea1.setVisible(false);
+            
+            name2Label.setVisible(true);
+            escalarLabel.setVisible(false);
+            jLabel2.setVisible(true);
+ 
+        }else if (inComboBox == "Producto por un escalar") {
+            
+            newFileNameTextEdit.setVisible(true);
+            nameEdit1.setVisible(true);
+            nameEdit2.setVisible(false);
+            escalarEdit.setVisible(true);
+            jTextArea1.setVisible(false);
+            
+            name2Label.setVisible(false);
+            escalarLabel.setVisible(true);
+            jLabel2.setVisible(true);
+
+        } else if (inComboBox == "Inversa") {
+            newFileNameTextEdit.setVisible(true);
+            nameEdit1.setVisible(true);
+            nameEdit2.setVisible(false);
+            escalarEdit.setVisible(false);
+            jTextArea1.setVisible(false);
+            
+            name2Label.setVisible(false);
+            escalarLabel.setVisible(false);
+            jLabel2.setVisible(true);
+           
+            
+        }else if (inComboBox == "Suma") {
+            newFileNameTextEdit.setVisible(true);
+            nameEdit1.setVisible(true);
+            nameEdit2.setVisible(true);
+            escalarEdit.setVisible(false);
+            jTextArea1.setVisible(false);
+            
+            name2Label.setVisible(true);
+            escalarLabel.setVisible(false);
+            jLabel2.setVisible(true);
+            
+            
+        }
+        
         
         
     }//GEN-LAST:event_optionsComboBoxActionPerformed
@@ -414,6 +502,8 @@ public class mainFrame extends javax.swing.JFrame {
         String numberE = escalarEdit.getText();
         
         
+        
+        
         if (inComboBox == "Transpuesta") {
             this.operations.createTransM(fileName1, newFileName);
             JOptionPane.showMessageDialog(null,"Matriz Transpuesta creada con "
@@ -429,13 +519,17 @@ public class mainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,msg);
         
         }else if (inComboBox == "Producto por un escalar") {
-            String msg = this.operations.multiplyM(fileName1, fileName2, newFileName);
-            JOptionPane.showMessageDialog(null,msg);
-        
-        
-        
-        
-        // TODO add your handling code here:
+            this.operations.multiplyE(fileName1, newFileName,Integer.parseInt(numberE));
+            JOptionPane.showMessageDialog(null,"Matriz creada!");
+        } else if (inComboBox == "Inversa") {
+            //se saca la inversaint x = 0;
+            int x = 0;
+            
+        }else if (inComboBox == "Suma") {
+            
+            //codigo para que saque la suma, conexion
+            int x = 0;
+            
         }
     }//GEN-LAST:event_acceptBtnMouseClicked
 
