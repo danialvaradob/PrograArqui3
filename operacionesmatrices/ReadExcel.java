@@ -22,12 +22,15 @@ public class ReadExcel {
 
     private String inputFile;
     private Sheet sheet;
+    private int numberOfRows;
+    private int numberOfCols;
 
     public void setInputFile(String inputFile) {
         this.inputFile = inputFile;
     }
 
-    public void read() throws IOException  {
+    public void read(String inputFile) throws IOException  {
+        this.inputFile = inputFile;
         File inputWorkbook = new File(inputFile);
         Workbook w;
         try {
@@ -64,6 +67,44 @@ public class ReadExcel {
         Cell cell = sheet.getCell(r, c);
         int content = Integer.parseInt(cell.getContents());
         return content;
+    }
+    
+    
+    public int getNumRows() {
+        
+        int cont = 0;
+        int rowi = 0;
+        
+        while (true) {
+            Cell cell = sheet.getCell(rowi, 0);
+            CellType type = cell.getType();
+            if (type == CellType.EMPTY) {
+                break;
+            }
+            cont++;
+            rowi++;
+        
+        }
+        
+        this.numberOfRows = cont;
+        return cont;
+    }
+    
+    public int getNumCols() {
+        int cont = 0;
+        int coli = 0;
+        
+        while (true) {
+            Cell cell = sheet.getCell(0,coli);
+            CellType type = cell.getType();
+            if (type == CellType.EMPTY) {
+                break;
+            }
+            cont++;
+            coli++;
+        
+        }
+        return cont;
     }
     
     /*

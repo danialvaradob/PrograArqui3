@@ -36,7 +36,14 @@ public class WriteExcel {
     private int ncols;
     private int nrows;
     private IntType type;
+    
 
+    
+    //CREATED BY DANIEL
+    private WritableSheet excelSheet;
+    WritableWorkbook workbook;
+    
+    
     public void setOutputFile(String name) {
     String inputFile = "";
     inputFile += name + ".xls";
@@ -59,15 +66,65 @@ public class WriteExcel {
 
         wbSettings.setLocale(new Locale("en", "EN"));
 
-        WritableWorkbook workbook = Workbook.createWorkbook(file, wbSettings);
+        this.workbook = Workbook.createWorkbook(file, wbSettings);
         workbook.createSheet(inputFile, 0);
-        WritableSheet excelSheet = workbook.getSheet(0);
+        this.excelSheet = workbook.getSheet(0);
         //createLabel(excelSheet);
         createRandomIntContent(excelSheet);
 
         workbook.write();
         workbook.close();
     }
+    
+    
+    
+    /**
+     * USE FOR ALL FUNCTIONS WHEN WRITING A NEW MATRIX, called after
+     * setOutputFile
+     * 
+     * @throws IOException
+     * @throws WriteException 
+     */
+    public void writeFile() throws IOException, WriteException {
+        File file = new File(inputFile);
+        WorkbookSettings wbSettings = new WorkbookSettings();
+
+        wbSettings.setLocale(new Locale("en", "EN"));
+
+        this.workbook = Workbook.createWorkbook(file, wbSettings);
+        workbook.createSheet(inputFile, 0);
+        this.excelSheet = workbook.getSheet(0);
+        //createLabel(excelSheet);
+        createContentNeeded();
+
+    }
+    
+    /**
+     * Used ONLY after using writeFile()
+     * @throws IOException
+     * @throws WriteException 
+     */
+    public void closeFile() throws IOException, WriteException {
+        this.workbook.write();
+        this.workbook.close();
+    }
+    
+    /**
+     * ONLY USED AFTER CALLING FUNCTION writeFile()
+     * @param rown Row number
+     * @param coln Column number
+     * @param content content wanted on that cell
+     */
+    public void writeInCell(int rown,int coln,int content) {
+        try {
+        addNumber(this.excelSheet,rown,coln,content);
+        }
+        catch (WriteException e) {
+            System.out.println("Error al escribir en el archivo");
+        }
+    }
+    
+    
 
     private void createLabel(WritableSheet sheet)
             throws WriteException {
@@ -98,6 +155,12 @@ public class WriteExcel {
 
     }
 
+    /**
+     * Method used when writing a new file with RANDOM numbers (called in writeNewFile();
+     * @param sheet
+     * @throws WriteException
+     * @throws RowsExceededException 
+     */
     private void createRandomIntContent(WritableSheet sheet) throws WriteException,
             RowsExceededException {
         
@@ -156,7 +219,51 @@ public class WriteExcel {
     
     }
     
-    private void createContent(WritableSheet sheet) throws WriteException,
+    
+    
+    private void createContentNeeded() throws WriteException,
+            RowsExceededException {
+        
+        // Lets create a times font
+        WritableFont times10pt = new WritableFont(WritableFont.TIMES, 10);
+        // Define the cell format
+        times = new WritableCellFormat(times10pt);
+        // Lets automatically wrap the cells
+        times.setWrap(true);
+
+        // create create a bold font with unterlines
+        WritableFont times10ptBoldUnderline = new WritableFont(
+                WritableFont.TIMES, 10, WritableFont.BOLD, false,
+                UnderlineStyle.SINGLE);
+        timesBoldUnderline = new WritableCellFormat(times10ptBoldUnderline);
+        // Lets automatically wrap the cells
+        timesBoldUnderline.setWrap(true);
+
+        CellView cv = new CellView();
+        cv.setFormat(times);
+        cv.setFormat(timesBoldUnderline);
+        cv.setAutosize(true);
+        
+        
+        /*
+        int n = 0;
+        for (int i = 0; i < this.nrows ; i++ ) {
+            for (int j = 0; j < this.ncols; j++) {
+                n = getRandomInt(this.type);
+                Integer integerN = n;
+                addNumber(sheet,i,j,integerN);
+            }
+            
+        
+        }
+        */
+    
+    
+    }
+    
+    
+    
+    private void createContentDEFAULT(WritableSheet sheet) throws WriteException,
             RowsExceededException {
         // Write a few number
         for (int i = 1; i < 10; i++) {
@@ -206,6 +313,9 @@ public class WriteExcel {
         label = new Label(column, row, s, times);
         sheet.addCell(label);
     }
+    
+    
+    
 /*
     public static void main(String[] args) throws WriteException, IOException {
         WriteExcel test = new WriteExcel();

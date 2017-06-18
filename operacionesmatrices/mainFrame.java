@@ -45,16 +45,19 @@ public class mainFrame extends javax.swing.JFrame {
         optionsComboBox = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        nameEdit1 = new javax.swing.JTextField();
+        nameEdit2 = new javax.swing.JTextField();
+        name1Label = new javax.swing.JLabel();
+        name2Label = new javax.swing.JLabel();
+        escalarLabel = new javax.swing.JLabel();
+        escalarEdit = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        acceptBtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        newFileNameTextEdit = new javax.swing.JTextField();
 
-        crearArchivoDialog.setMinimumSize(new java.awt.Dimension(100, 100));
+        crearArchivoDialog.setMinimumSize(new java.awt.Dimension(1000, 1000));
 
         jLabel5.setText("Nombre del Archivo");
 
@@ -170,60 +173,84 @@ optionsComboBox.addActionListener(new java.awt.event.ActionListener() {
 
     jButton1.setText("Abrir Archivo");
 
-    jTextField2.addActionListener(new java.awt.event.ActionListener() {
+    nameEdit1.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jTextField2ActionPerformed(evt);
+            nameEdit1ActionPerformed(evt);
         }
     });
 
-    jTextField3.addActionListener(new java.awt.event.ActionListener() {
+    nameEdit2.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jTextField3ActionPerformed(evt);
+            nameEdit2ActionPerformed(evt);
         }
     });
 
-    jLabel2.setText("Nombre Arhivo1");
+    name1Label.setText("Nombre Arhivo1");
 
-    jLabel3.setText("Nombre Arhivo2");
+    name2Label.setText("Nombre Arhivo2");
 
-    jLabel4.setText("Escalar");
+    escalarLabel.setText("Escalar");
 
     jTextArea1.setColumns(20);
     jTextArea1.setRows(5);
     jScrollPane1.setViewportView(jTextArea1);
 
+    acceptBtn.setText("Aceptar");
+    acceptBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            acceptBtnMouseClicked(evt);
+        }
+    });
+    acceptBtn.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            acceptBtnActionPerformed(evt);
+        }
+    });
+
+    jLabel2.setText("Nombre del nuevo Archivo");
+
+    newFileNameTextEdit.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            newFileNameTextEditActionPerformed(evt);
+        }
+    });
+
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jButton1)
+                .addGroup(layout.createSequentialGroup()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(name1Label, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(name2Label, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addComponent(escalarLabel)
+                        .addComponent(acceptBtn))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(nameEdit2, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+                        .addComponent(nameEdit1)
+                        .addComponent(escalarEdit))))
+            .addGap(27, 27, 27))
         .addGroup(layout.createSequentialGroup()
             .addGap(21, 21, 21)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jLabel1)
-                .addComponent(createFile)
-                .addComponent(optionsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-            .addContainerGap(215, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap())
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(newFileNameTextEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createSequentialGroup()
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jButton1)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addComponent(jLabel4))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-                                .addComponent(jTextField2)
-                                .addComponent(jTextField1))))
-                    .addGap(27, 27, 27))))
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel1)
+                        .addComponent(createFile)
+                        .addComponent(optionsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addContainerGap())
     );
     layout.setVerticalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,21 +262,27 @@ optionsComboBox.addActionListener(new java.awt.event.ActionListener() {
             .addGap(26, 26, 26)
             .addComponent(jLabel1)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(optionsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(optionsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(acceptBtn))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jLabel2))
+                .addComponent(nameEdit1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(name1Label))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jLabel3))
+                .addComponent(nameEdit2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(name2Label))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jLabel4)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(18, 18, 18)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(escalarLabel)
+                .addComponent(escalarEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(2, 2, 2)
+            .addComponent(jLabel2)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(newFileNameTextEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addContainerGap())
     );
 
@@ -262,15 +295,17 @@ optionsComboBox.addActionListener(new java.awt.event.ActionListener() {
 
     private void optionsComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionsComboBoxActionPerformed
         // TODO add your handling code here:
+        
+        
     }//GEN-LAST:event_optionsComboBoxActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void nameEdit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameEdit1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_nameEdit1ActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void nameEdit2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameEdit2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_nameEdit2ActionPerformed
 
     @SuppressWarnings("empty-statement")
     private void createFileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createFileMouseClicked
@@ -350,6 +385,38 @@ optionsComboBox.addActionListener(new java.awt.event.ActionListener() {
         // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton1MouseClicked
 
+    private void acceptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_acceptBtnActionPerformed
+
+    private void acceptBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_acceptBtnMouseClicked
+        
+        String inComboBox = optionsComboBox.getSelectedItem().toString();
+        /*
+        "Suma", "Producto por un escalar", "Producto", "Transpuesta",
+        "Matriz Fila","Matriz Columna",
+        "Matriz Rectangular","Matriz cuadrada","Matriz nula",
+        "Matriz Triangular","Triangular Inferioz","Matriz Escalar",
+        "Matriz Identidad","Matriz Unidad"
+        */
+        String newFileName = newFileNameTextEdit.getText();
+        String fileName1 = nameEdit1.getText();
+        String fileName2 = nameEdit2.getText();
+        
+        
+        if (inComboBox == "Transpuesta") {
+            
+            
+        }
+        
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_acceptBtnMouseClicked
+
+    private void newFileNameTextEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newFileNameTextEditActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_newFileNameTextEditActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -386,26 +453,29 @@ optionsComboBox.addActionListener(new java.awt.event.ActionListener() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton acceptBtn;
     private javax.swing.JTextField colTextEdit;
     private javax.swing.JComboBox<String> comboBoxPN;
     private javax.swing.JDialog crearArchivoDialog;
     private javax.swing.JButton createFile;
+    private javax.swing.JTextField escalarEdit;
+    private javax.swing.JLabel escalarLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JLabel name1Label;
+    private javax.swing.JLabel name2Label;
+    private javax.swing.JTextField nameEdit1;
+    private javax.swing.JTextField nameEdit2;
     private javax.swing.JTextField nameTextEdit;
+    private javax.swing.JTextField newFileNameTextEdit;
     private javax.swing.JComboBox<String> optionsComboBox;
     private javax.swing.JTextField rowTextEdit;
     // End of variables declaration//GEN-END:variables
