@@ -15,11 +15,15 @@ import javax.swing.JOptionPane;
  */
 public class mainFrame extends javax.swing.JFrame {
 
+    private Operations operations;
     /**
      * Creates new form mainFrame
      */
     public mainFrame() {
         initComponents();
+       this.operations = new Operations();
+        
+        
     }
 
     /**
@@ -402,10 +406,13 @@ optionsComboBox.addActionListener(new java.awt.event.ActionListener() {
         String newFileName = newFileNameTextEdit.getText();
         String fileName1 = nameEdit1.getText();
         String fileName2 = nameEdit2.getText();
+        String numberE = escalarEdit.getText();
         
         
         if (inComboBox == "Transpuesta") {
-            
+            this.operations.createTransM(fileName1, newFileName);
+            JOptionPane.showMessageDialog(null,"Matriz Transpuesta creada con "
+                    + "el nombre de " + newFileName);
             
         }
         

@@ -39,9 +39,12 @@ public class Operations {
             newM.writeFile();
             
             
-            file1.read(_file1);
+            file1.read(_file1 + ".xls");
             int nrowsFile1 = file1.getNumRows();
             int ncolsFile1 = file1.getNumCols();
+            
+            System.out.println("Numero de filas: " + nrowsFile1 + "\nNumero de columnas"
+            + ncolsFile1);
             
             for (int i = 0; i < nrowsFile1; i++) {
                 for (int j = 0; j < ncolsFile1; j++) {
@@ -49,8 +52,11 @@ public class Operations {
                 }
             
             }
+            newM.closeFile();
             
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        
+        }
         
     
     }

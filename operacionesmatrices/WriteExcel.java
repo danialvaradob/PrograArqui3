@@ -41,7 +41,7 @@ public class WriteExcel {
     
     //CREATED BY DANIEL
     private WritableSheet excelSheet;
-    WritableWorkbook workbook;
+    private WritableWorkbook workbook;
     
     
     public void setOutputFile(String name) {
@@ -67,13 +67,13 @@ public class WriteExcel {
         wbSettings.setLocale(new Locale("en", "EN"));
 
         this.workbook = Workbook.createWorkbook(file, wbSettings);
-        workbook.createSheet(inputFile, 0);
-        this.excelSheet = workbook.getSheet(0);
+        this.workbook.createSheet(this.inputFile, 0);
+        this.excelSheet = this.workbook.getSheet(0);
         //createLabel(excelSheet);
-        createRandomIntContent(excelSheet);
+        createRandomIntContent(this.excelSheet);
 
-        workbook.write();
-        workbook.close();
+        this.workbook.write();
+        this.workbook.close();
     }
     
     
@@ -86,14 +86,14 @@ public class WriteExcel {
      * @throws WriteException 
      */
     public void writeFile() throws IOException, WriteException {
-        File file = new File(inputFile);
+        File file = new File(this.inputFile);
         WorkbookSettings wbSettings = new WorkbookSettings();
 
         wbSettings.setLocale(new Locale("en", "EN"));
 
         this.workbook = Workbook.createWorkbook(file, wbSettings);
-        workbook.createSheet(inputFile, 0);
-        this.excelSheet = workbook.getSheet(0);
+        this.workbook.createSheet(inputFile, 0);
+        this.excelSheet = this.workbook.getSheet(0);
         //createLabel(excelSheet);
         createContentNeeded();
 
@@ -243,22 +243,6 @@ public class WriteExcel {
         cv.setFormat(times);
         cv.setFormat(timesBoldUnderline);
         cv.setAutosize(true);
-        
-        
-        /*
-        int n = 0;
-        for (int i = 0; i < this.nrows ; i++ ) {
-            for (int j = 0; j < this.ncols; j++) {
-                n = getRandomInt(this.type);
-                Integer integerN = n;
-                addNumber(sheet,i,j,integerN);
-            }
-            
-        
-        }
-        */
-    
-    
     }
     
     

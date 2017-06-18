@@ -26,11 +26,11 @@ public class ReadExcel {
     private int numberOfCols;
 
     public void setInputFile(String inputFile) {
-        this.inputFile = inputFile;
+        this.inputFile = inputFile + ".xls";
     }
 
     public void read(String inputFile) throws IOException  {
-        this.inputFile = inputFile;
+        this.inputFile = inputFile+ ".xls";
         File inputWorkbook = new File(inputFile);
         Workbook w;
         try {
