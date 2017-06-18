@@ -79,13 +79,11 @@ public class ReadExcel {
             try{
                 Cell cell = sheet.getCell(rowi, 0);
                 CellType type = cell.getType();
+                cont++;
+                rowi++;
             
             }catch (Exception e) {
                 break;
-                    }
-            finally {
-                cont++;
-                rowi++;
             }
         
         }
@@ -97,19 +95,162 @@ public class ReadExcel {
     public int getNumCols() {
         int cont = 0;
         int coli = 0;
-        
+
         while (true) {
-            Cell cell = sheet.getCell(0,coli);
-            CellType type = cell.getType();
-            if (type == CellType.EMPTY) {
+            try {
+                Cell cell = sheet.getCell(0, coli);
+                CellType type = cell.getType();
+                cont++;
+                coli++;
+            } catch (Exception e) {
                 break;
             }
-            cont++;
-            coli++;
-        
+
         }
+        this.numberOfCols = coli;
         return cont;
     }
+
+
+    public boolean esCuadrada(){
+        int coli = getNumCols();
+        int rowi = getNumRows();
+
+        return coli == rowi;
+    }
+
+    public boolean esNula(){
+        boolean flag = true;
+        for (int i = 0; i < getNumRows(); i++) {
+            for (int j = 0; j < getNumCols(); j++) {
+                Cell cell = sheet.getCell(i, j);
+                CellType type = cell.getType();
+                if (type != CellType.EMPTY || getNumberInCell(i, j)!= 0) {
+                    flag = false;
+                }
+            }
+        }
+        return flag;
+    }
+
+    public boolean esSoloDiagonal(){
+
+        boolean flag = true;
+        for (int i = 0; i < getNumRows(); i++) {
+            for (int j = 0; j < getNumCols(); j++) {
+                Cell cell = sheet.getCell(i, j);
+                CellType type = cell.getType();
+                if(i == j){
+                    if (type == CellType.EMPTY || getNumberInCell(i, j)== 0) {
+                        flag = false;
+                    }
+                }else{
+                    if (type != CellType.EMPTY || getNumberInCell(i, j)!= 0) {
+                        flag = false;
+                    }
+                }
+            }
+        }
+        return flag;
+    }
+
+    public boolean esTriangularSuperior(){
+        boolean flag = true;
+        for (int i = 0; i < getNumRows(); i++) {
+            for (int j = 0; j < getNumCols(); j++) {
+                Cell cell = sheet.getCell(i, j);
+                CellType type = cell.getType();
+                if(i <= j){
+                    if (type == CellType.EMPTY || getNumberInCell(i, j)== 0) {
+                        flag = false;
+                    }
+                }else{
+                    if (type != CellType.EMPTY || getNumberInCell(i, j)!= 0) {
+                        flag = false;
+                    }
+                }
+            }
+        }
+        return flag;
+    }
+
+    public boolean esTriangularInferior(){
+        boolean flag = true;
+        for (int i = 0; i < getNumRows(); i++) {
+            for (int j = 0; j < getNumCols(); j++) {
+                Cell cell = sheet.getCell(i, j);
+                CellType type = cell.getType();
+                if(i >= j){
+                    if (type == CellType.EMPTY || getNumberInCell(i, j)== 0) {
+                        flag = false;
+                    }
+                }else{
+                    if (type != CellType.EMPTY || getNumberInCell(i, j)!= 0) {
+                        flag = false;
+                    }
+                }
+            }
+        }
+        return flag;
+    }
+
+    public boolean esMatrizFila(){
+        return getNumRows() == 1;
+    }
+
+
+    public boolean esMatrizColumna() {
+        return getNumCols() == 1;
+    }
+
+    public boolean esEscalar(){
+        int num = 0;
+        boolean firstTime = true;
+        boolean flag = true;
+        for (int i = 0; i < getNumRows(); i++) {
+            for (int j = 0; j < getNumCols(); j++) {
+                Cell cell = sheet.getCell(i, j);
+                CellType type = cell.getType();
+                if(i == j){
+                    if(firstTime){
+                        num = getNumberInCell(i,j);
+                        firstTime = false;
+                    }
+                    if ((type == CellType.EMPTY || getNumberInCell(i, j)== 0) || getNumberInCell(i,j) != num) {
+                        flag = false;
+                    }
+                }else{
+                    if (type != CellType.EMPTY || getNumberInCell(i, j)!= 0) {
+                        flag = false;
+                    }
+                }
+            }
+        }
+        return flag;
+    }
+
+    public boolean esIdentidad(){
+        int num = 1;
+        boolean flag = true;
+        for (int i = 0; i < getNumRows(); i++) {
+            for (int j = 0; j < getNumCols(); j++) {
+                Cell cell = sheet.getCell(i, j);
+                CellType type = cell.getType();
+                if(i == j){
+                    if ((type == CellType.EMPTY || getNumberInCell(i, j)== 0) || getNumberInCell(i,j) != num) {
+                        flag = false;
+                    }
+                }else{
+                    if (type != CellType.EMPTY || getNumberInCell(i, j)!= 0) {
+                        flag = false;
+                    }
+                }
+            }
+        }
+        return flag;
+    }
+
+
     
     /*
     public static void main(String[] args) throws IOException {
