@@ -354,10 +354,10 @@ public class mainFrame extends javax.swing.JFrame {
         String PosNeg = comboBoxPN.getSelectedItem().toString();
         
         switch (PosNeg) {
-            case "Positivo":
+            case "Positivos":
                 type = IntType.POSITIVE;
                 break;
-            case "Negativo":
+            case "Negativos":
                 type = IntType.NEGATIVE;
                 break;
             default:
