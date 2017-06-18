@@ -22,6 +22,15 @@ public class mainFrame extends javax.swing.JFrame {
     public mainFrame() {
         initComponents();
        this.operations = new Operations();
+       newFileNameTextEdit.setVisible(false);
+            nameEdit1.setVisible(true);
+            nameEdit2.setVisible(false);
+            escalarEdit.setVisible(false);
+            jTextArea1.setVisible(false);
+            
+            name2Label.setVisible(false);
+            escalarLabel.setVisible(false);
+            jLabel2.setVisible(false);
         
         
     }
