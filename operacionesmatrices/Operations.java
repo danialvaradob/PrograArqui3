@@ -151,7 +151,10 @@ public class Operations {
                     msg += "CUADRADA";
                 } else {
                     msg += "RECTANGULAR";
-                }if (file1.esEscalar()) {
+                }if (file1.esNula()) {
+                    msg += " - NULA";
+                    return msg;
+                } if (file1.esEscalar()) {
                     msg += " - ESCALAR";
                 } else if (file1.esIdentidad()) {
                     msg += " - IDENTIDAD";
@@ -161,8 +164,6 @@ public class Operations {
                     msg += " - MATRIZ COLUMNA";
                 } if (file1.esMatrizFila()) {
                     msg += " - MATRIZ FILA";
-                } if (file1.esNula()) {
-                    msg += " - NULA";
                 } if (file1.esSoloDiagonal()) {
                     msg += " - DIAGONAL";
                 } if (file1.esTriangularInferior()) {
