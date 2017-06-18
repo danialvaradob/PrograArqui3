@@ -86,16 +86,20 @@ public class WriteExcel {
      * @throws WriteException 
      */
     public void writeFile() throws IOException, WriteException {
-        File file = new File(this.inputFile);
         WorkbookSettings wbSettings = new WorkbookSettings();
-
         wbSettings.setLocale(new Locale("en", "EN"));
-
-        this.workbook = Workbook.createWorkbook(file, wbSettings);
-        this.workbook.createSheet(inputFile, 0);
-        this.excelSheet = this.workbook.getSheet(0);
-        //createLabel(excelSheet);
-        createContentNeeded();
+        
+        File file = new File(this.inputFile);
+        if(!file.exists()) {
+            this.workbook = Workbook.createWorkbook(file, wbSettings);
+            this.workbook.createSheet(inputFile, 0);
+            this.excelSheet = this.workbook.getSheet(0);
+            //createLabel(excelSheet);
+            createContentNeeded();
+        } else {
+            asdasdasdas
+            
+        }
 
     }
     

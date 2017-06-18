@@ -424,6 +424,10 @@ public class mainFrame extends javax.swing.JFrame {
             
             jTextArea1.setText(type);
             
+        } else if (inComboBox == "Producto") {
+            String msg = this.operations.multiplyM(fileName1, fileName2, newFileName);
+            JOptionPane.showMessageDialog(null,msg);
+        
         }
         
         

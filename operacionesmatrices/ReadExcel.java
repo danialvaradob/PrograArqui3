@@ -25,46 +25,25 @@ public class ReadExcel {
     private int numberOfRows;
     private int numberOfCols;
 
-    public void setInputFile(String inputFile) {
-        this.inputFile = inputFile + ".xls";
-    }
 
     public void read(String inputFile) throws IOException  {
-        this.inputFile = inputFile+ ".xls";
+        this.inputFile = inputFile + ".xls";
+        System.out.println(this.inputFile);
         File inputWorkbook = new File(inputFile);
         Workbook w;
         try {
             w = Workbook.getWorkbook(inputWorkbook);
             // Get the first sheet
             sheet = w.getSheet(0);
-            // Loop over first 10 column and lines
 
-            /*
-            for (int j = 0; j < sheet.getColumns(); j++) {
-                for (int i = 0; i < sheet.getRows(); i++) {
-                    Cell cell = sheet.getCell(j, i);
-                    CellType type = cell.getType();
-                    if (type == CellType.LABEL) {
-                        System.out.println("I got a label "
-                                + cell.getContents());
-                    }
-
-                    if (type == CellType.NUMBER) {
-                        System.out.println("I got a number "
-                                + cell.getContents());
-                    }
-
-                }
-            }
-            */
-        } catch (BiffException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
     
     int getNumberInCell(int r,int c) {
         
-        Cell cell = sheet.getCell(r, c);
+        Cell cell = sheet.getCell(c, r);
         int content = Integer.parseInt(cell.getContents());
         return content;
     }
@@ -77,14 +56,17 @@ public class ReadExcel {
         
         while (true) {
             try{
-                Cell cell = sheet.getCell(rowi, 0);
+                Cell cell = sheet.getCell(0, rowi);
                 CellType type = cell.getType();
+            
+            }catch (Exception e) {
+                e.printStackTrace();
+                break;
+                    }
+            
                 cont++;
                 rowi++;
             
-            }catch (Exception e) {
-                break;
-            }
         
         }
         
@@ -95,22 +77,28 @@ public class ReadExcel {
     public int getNumCols() {
         int cont = 0;
         int coli = 0;
-
+        
         while (true) {
             try {
-                Cell cell = sheet.getCell(0, coli);
+                Cell cell = sheet.getCell(coli,0);
                 CellType type = cell.getType();
-                cont++;
-                coli++;
-            } catch (Exception e) {
+                    }
+            catch (Exception e) {
                 break;
             }
-
+            
+                cont++;
+                coli++;
+            
+            
+            
+        
         }
-        this.numberOfCols = coli;
         return cont;
     }
-
+    
+    
+    
 
     public boolean esCuadrada(){
         int coli = getNumCols();
@@ -249,7 +237,6 @@ public class ReadExcel {
         }
         return flag;
     }
-
 
     
     /*

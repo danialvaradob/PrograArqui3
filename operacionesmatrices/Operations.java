@@ -68,6 +68,7 @@ public class Operations {
     String multiplyM(String _file1,String _file2,String _newFileName) {
         ReadExcel file1 = new ReadExcel();
         ReadExcel file2 = new ReadExcel();
+        String msg = "";
         
         try {
             file1.read(_file1 + ".xls");
@@ -84,24 +85,30 @@ public class Operations {
                 return error;
             }
             
-            int newMatrixRows = ncolsFile1;
-            int newMatrixCols = nrowsFile1;
+            int newMatrixRows = nrowsFile1;
+            int newMatrixCols = ncolsFile2;
             
             
-            int numberOfThreads = nrowsFile1;
-            List<Thread> threads = new ArrayList<>(numberOfThreads);
+            //int numberOfThreads = newMatrixRows*newMatrixCols;
+            //List<Thread> threads = new ArrayList<>(numberOfThreads);
+            for (int i = 0; i < newMatrixRows;i++) {
+                for (int j = 0; j < newMatrixCols;j++) {
+                    (new ThreadMultiply(file1,file2,i,j,_newFileName)).start();
+                }
+            }
             
+            msg = "CREADA";
             
         
         } catch (Exception e) {
             
-            String error = "Ocurrio un error";
+            msg = "ERROR";
             
-        }
+        } 
+        
+        return msg;
         
         
-        
-    return "Ja";
     }
     
     

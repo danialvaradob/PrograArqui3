@@ -20,6 +20,7 @@ class MatrixMultiplier implements Runnable {
     ReadExcel file2;
     WriteExcel newFile;
     
+    
 
     public MatrixMultiplier(ReadExcel _file1, ReadExcel _file2,WriteExcel _newFile ,Sheet _sheet,int _pos){
         this.sheet = _sheet;
