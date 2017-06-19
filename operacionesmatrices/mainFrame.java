@@ -556,10 +556,12 @@ public class mainFrame extends javax.swing.JFrame {
             
             
         }else if (inComboBox == "Suma") {
-            
-            //codigo para que saque la suma, conexion
-            int x = 0;
-            
+            String msg = this.operations.sumM(fileName1, fileName2, newFileName);
+            if(msg == "Nueva matriz creada"){
+                JOptionPane.showMessageDialog(null,msg + " con el nombre de " + newFileName);
+            }else{
+                JOptionPane.showMessageDialog(null,msg);
+            }
         }
     }//GEN-LAST:event_acceptBtnMouseClicked
 

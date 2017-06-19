@@ -55,7 +55,7 @@ public class Operations {
             
             for (int i = 0; i < nrowsFile1; i++) {
                 for (int j = 0; j < ncolsFile1; j++) {
-                    newM.writeInCell(j, i, file1.getNumberInCell(i, j));
+                    newM.writeInCell(j, i, file1.getNumberInCell(j, i));
                 }
             
             }
@@ -210,6 +210,7 @@ public class Operations {
     }
 
 
+
     
     public int[][] createMatrix(String _file1) {
         
@@ -238,7 +239,7 @@ public class Operations {
     }
     
     public int determinante(int[][] matriz)
-{
+    {
     int det;
     if(matriz.length==2)
     {
@@ -321,11 +322,11 @@ public class Operations {
     }
     
     public void crearMatrixEnArchivo(int[][] _matrix, String _newFileName,int r,int c) {
+
         try {
             WriteExcel newM = new WriteExcel();
             newM.setOutputFile(_newFileName);
             newM.writeFile();
-
 
             for (int i = 0; i < r; i++) {
                 for (int j = 0; j < c; j++) {
@@ -340,5 +341,45 @@ public class Operations {
         }
     
     }
+
+    public String sumM(String _file1,String _file2,String _newFileName) {
+        ReadExcel file1 = new ReadExcel();
+        ReadExcel file2 = new ReadExcel();
+        String msg;
+        try {
+            WriteExcel newM = new WriteExcel();
+            newM.setOutputFile(_newFileName);
+            newM.writeFile();
+            
+            file1.read(_file1 + ".xls");
+            int nrowsFile1 = file1.getNumRows();
+            int ncolsFile1 = file1.getNumCols();
+
+            file2.read(_file2 + ".xls");
+            int nrowsFile2 = file2.getNumRows();
+            int ncolsFile2 = file2.getNumCols();
+
+            if (nrowsFile2 != nrowsFile1 || ncolsFile1!=ncolsFile2) {
+                msg = "No se puede hacer la suma con estas matrices por las dimensiones";
+                return msg;
+            }
+
+            for (int i = 0; i < nrowsFile1;i++) {
+                for (int j = 0; j < ncolsFile1;j++) {
+                    newM.writeInCell(j, i, file1.getNumberInCell(i, j) + file2.getNumberInCell(i, j));
+                }
+            }
+            newM.closeFile();
+            msg = "Nueva matriz creada";
+
+        } catch (Exception e) {
+            msg = "ERROR";
+        }
+
+        return msg;
+
+
+    }
+
 
 }
