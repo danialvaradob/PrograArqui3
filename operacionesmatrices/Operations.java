@@ -314,9 +314,9 @@ public class Operations {
     
     public int[][] crearMparaRango(int[][] matriz) {
         int r = matriz.length;
-        int c = matriz[0].length;
+        int c = matriz[0].length-1;
         
-        int [][]nueva = new int[r-1][c-1];
+        int [][]nueva = new int[r][c];
         for (int i = 0;i < r;i++) {
             for (int j = 0; j < c;j++) {
                 
