@@ -579,7 +579,7 @@ public class mainFrame extends javax.swing.JFrame {
             int[][]rango = operations.crearMparaRango(m);
             int rangoi = operations.determinante(rango);
             
-            jTextArea1.setText(Integer.toString(rangoi));
+            jTextArea1.setText(Integer.toString(rangoi + 1 ));
             
         }
         
