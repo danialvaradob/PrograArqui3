@@ -208,7 +208,8 @@ public class WriteExcel {
             for (int j = 0; j < this.ncols; j++) {
                 n = getRandomInt(this.type);
                 Integer integerN = n;
-                addNumber(sheet,i,j,integerN);
+                //addNumber(sheet,i,j,integerN);
+                addNumber(sheet,j,i,integerN);
             }
             
         

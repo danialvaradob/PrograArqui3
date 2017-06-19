@@ -393,6 +393,18 @@ public class mainFrame extends javax.swing.JFrame {
             jLabel2.setVisible(true);
             
             
+        }else if (inComboBox == "Rango") {
+            newFileNameTextEdit.setVisible(false);
+            nameEdit1.setVisible(true);
+            nameEdit2.setVisible(false);
+            escalarEdit.setVisible(false);
+            jTextArea1.setVisible(true);
+            
+            name2Label.setVisible(false);
+            escalarLabel.setVisible(false);
+            jLabel2.setVisible(false);
+            
+            
         }
         
         
