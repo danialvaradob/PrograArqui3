@@ -174,7 +174,7 @@ public class mainFrame extends javax.swing.JFrame {
             }
         });
 
-        optionsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Suma", "Producto por un escalar", "Producto", "Transpuesta","Identificar Tipo","Inversa" }));
+        optionsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Suma", "Producto por un escalar", "Producto", "Transpuesta","Identificar Tipo","Inversa","Rango" }));
         optionsComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 optionsComboBoxActionPerformed(evt);
@@ -562,7 +562,15 @@ public class mainFrame extends javax.swing.JFrame {
             }else{
                 JOptionPane.showMessageDialog(null,msg);
             }
+        } else if (inComboBox == "Rango") {
+            int[][]m = operations.createMatrix(fileName1);
+            int[][]rango = operations.crearMparaRango(m);
+            int rangoi = operations.determinante(rango);
+            
+            jTextArea1.setText(Integer.toString(rangoi));
+            
         }
+        
     }//GEN-LAST:event_acceptBtnMouseClicked
 
     private void newFileNameTextEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newFileNameTextEditActionPerformed

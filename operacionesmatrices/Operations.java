@@ -310,6 +310,22 @@ public class Operations {
         }
         return nm;
     }
+    
+    
+    public int[][] crearMparaRango(int[][] matriz) {
+        int r = matriz.length;
+        int c = matriz[0].length;
+        
+        int [][]nueva = new int[r-1][c-1];
+        for (int i = 0;i < r;i++) {
+            for (int j = 0; j < c;j++) {
+                
+                nueva[i][j] = matriz[i][j];
+            }
+        }
+        return nueva;
+    
+    }
 
     public int[][] matrizTranspuesta(int [][] matriz){
         int[][]nuevam=new int[matriz[0].length][matriz.length];

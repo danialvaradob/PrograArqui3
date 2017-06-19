@@ -264,7 +264,7 @@
     <Component class="javax.swing.JComboBox" name="optionsComboBox">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;Suma&quot;, &quot;Producto por un escalar&quot;, &quot;Producto&quot;, &quot;Transpuesta&quot;,&quot;Identificar Tipo&quot;,&quot;Inversa&quot; })" type="code"/>
+          <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;Suma&quot;, &quot;Producto por un escalar&quot;, &quot;Producto&quot;, &quot;Transpuesta&quot;,&quot;Identificar Tipo&quot;,&quot;Inversa&quot;,&quot;Rango&quot; })" type="code"/>
         </Property>
       </Properties>
       <Events>
