@@ -530,9 +530,30 @@ public class mainFrame extends javax.swing.JFrame {
         }else if (inComboBox == "Producto por un escalar") {
             this.operations.multiplyE(fileName1, newFileName,Integer.parseInt(numberE));
             JOptionPane.showMessageDialog(null,"Matriz creada!");
+            
         } else if (inComboBox == "Inversa") {
             //se saca la inversaint x = 0;
-            int x = 0;
+            int rs = 0,cs = 1;
+            ReadExcel file1 = new ReadExcel();
+            try {
+                file1.read(file1 + ".xls");
+                 rs = file1.getNumRows();
+                 cs = file1.getNumCols();
+            }catch (Exception e) {};
+
+            if (rs != cs) {
+                JOptionPane.showMessageDialog(null,"Matriz debe ser cuadrada!");
+            } else {
+                int[][]m = operations.createMatrix(fileName1);
+                int[][]inversa = operations.matrizInversa(m);
+                int r = inversa.length;
+                operations.crearMatrixEnArchivo(inversa, newFileName, r, r);
+                JOptionPane.showMessageDialog(null,"Matriz CREADA!, bajo el nombre de "
+                        + newFileName );
+            }
+            
+            
+            
             
         }else if (inComboBox == "Suma") {
             

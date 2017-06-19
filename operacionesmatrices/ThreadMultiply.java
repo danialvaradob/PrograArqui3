@@ -41,8 +41,7 @@ public class ThreadMultiply extends Thread {
             int result = 0;
             for (int index = 0; index < matrixA.getNumCols(); index++) {
                 result += matrixA.getNumberInCell(positionI, index) * matrixB.getNumberInCell(index, positionJ);
-                //System.out.printf("Hilo [%d,%d], values[%d, %d]", positionI, positionJ,matrixA.getNumberInCell(positionI, index), matrixB.getNumberInCell(index, positionJ));
-            }
+                }
             
             System.out.println("Hilo " + positionI + ", " +positionJ + " Resultado: "
             + result);
